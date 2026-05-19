@@ -1,4 +1,4 @@
-﻿namespace POSSystem.Models
+﻿  namespace POSSystem.Models
 {
     public class Users
     {
@@ -11,9 +11,7 @@
         //User Email
         public string Email {  get; set; } = string.Empty;
 
-        //User Phone Number
-        public string Phone {  get; set; } = string.Empty;
-
+                                                                        
         //User Password
         public string Password {  get; set; } = string.Empty;
 
@@ -23,6 +21,9 @@
 
         //User Date Of Birth
         public string DateOfBirth { get; set; } = string.Empty;
+
+        //User Phone Number
+        public int? Phone { get; set; } = null;
 
         public string FirstName
         {
