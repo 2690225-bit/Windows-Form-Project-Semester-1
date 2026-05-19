@@ -1,5 +1,6 @@
 ﻿using POSSystem;
 using POSSystem.Forms;
+using POSSystem.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,7 @@ namespace POSSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            FileManager.LoadAll();
             Application.Run(new LoginForm());
         }
     }
