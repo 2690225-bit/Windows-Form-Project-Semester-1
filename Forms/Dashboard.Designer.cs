@@ -222,7 +222,7 @@
             this.button2.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
             this.button2.Size = new System.Drawing.Size(200, 45);
             this.button2.TabIndex = 1;
-            this.button2.Text = "View Inventory";
+            this.button2.Text = "Inventory";
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.btnViewInventory);

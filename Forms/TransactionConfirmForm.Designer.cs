@@ -1,0 +1,165 @@
+﻿namespace POSSystem.Forms
+{
+    partial class TransactionConfirmForm
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // label1 (green tick icon)
+            // 
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Green;
+            this.label1.Location = new System.Drawing.Point(190, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(70, 70);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "✓";
+            // 
+            // label2 (transaction ID — filled in constructor)
+            // 
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Gray;
+            this.label2.Location = new System.Drawing.Point(30, 145);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(390, 22);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Transaction ID:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label3 (total and payment method — filled in constructor)
+            // 
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(30, 168);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(390, 22);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Total: $0.00";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label4 (success message)
+            // 
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(30, 100);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(390, 40);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Your transaction has been successfully completed.";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // button1 (print receipt)
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(30, 210);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(130, 35);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Print Receipt";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.btnPrint);
+            // 
+            // button2 (download PDF)
+            // 
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Location = new System.Drawing.Point(170, 210);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(130, 35);
+            this.button2.TabIndex = 5;
+            this.button2.Text = "Download PDF";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.btnDownloadPdf);
+            // 
+            // button3 (email receipt)
+            // 
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Location = new System.Drawing.Point(310, 210);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(130, 35);
+            this.button3.TabIndex = 6;
+            this.button3.Text = "Email Receipt";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.btnEmailReceipt);
+            // 
+            // button4 (close)
+            // 
+            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Location = new System.Drawing.Point(160, 255);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(130, 35);
+            this.button4.TabIndex = 7;
+            this.button4.Text = "Close";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.btnClose);
+            // 
+            // TransactionConfirmForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(450, 320);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Name = "TransactionConfirmForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Transaction Complete";
+            this.Load += new System.EventHandler(this.TransactionConfirmForm_Load);
+            this.ResumeLayout(false);
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+    }
+}

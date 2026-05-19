@@ -18,33 +18,33 @@ namespace POSSystem.Forms
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
-
+            var store = DataStore.Instance;
+            label3.Text = $"Welcome back, {store.CurrentUser?.FirstName}";
+            RefreshLowStockAlerts();
         }
 
         private void lblLogo(object sender, EventArgs e)
         {
-
+           
         }
 
         private void navPanel(object sender, PaintEventArgs e)
         {
-
+            
         }
 
         private void btnAnalytics(object sender, EventArgs e)
         {
-
+            
         }
 
         private void btnViewInventory(object sender, EventArgs e)
         {
-            // Open the inventory form and wait for it to close before returning to dashboard
             new InventoryForm().ShowDialog(this);
         }
 
         private void btnAddProduct(object sender, EventArgs e)
         {
-            // Open the add product form directly from the nav
             new AddProductForm().ShowDialog(this);
         }
 
@@ -55,27 +55,27 @@ namespace POSSystem.Forms
 
         private void btnBuildOrder(object sender, EventArgs e)
         {
-
+            new BuildOrderForm().ShowDialog(this);
         }
 
         private void btnTransactionLog(object sender, EventArgs e)
         {
-
+            
         }
 
         private void btnReceipts(object sender, EventArgs e)
         {
-
+            
         }
 
         private void btnAdmin(object sender, EventArgs e)
         {
-
+            new StaffForm().ShowDialog(this);
         }
 
         private void btnSettings(object sender, EventArgs e)
         {
-
+            new SettingsForm().ShowDialog(this);
         }
 
         private void headerPanel(object sender, PaintEventArgs e)
@@ -124,7 +124,7 @@ namespace POSSystem.Forms
 
             // Update the window title to show how many low stock alerts there are
             if (lowStockProducts.Count > 0)
-                this.Text = $"Dashboard — ⚠ {lowStockProducts.Count} low stock alert(s)";
+                this.Text = $"Dashboard — {lowStockProducts.Count} low stock alert(s)";
             else
                 this.Text = "Dashboard";
         }

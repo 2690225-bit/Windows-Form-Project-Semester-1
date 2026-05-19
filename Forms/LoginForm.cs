@@ -40,7 +40,6 @@
 
             }
 
-            // Fires every time a key is pressed in the password box
             private void txtPassword(object sender, EventArgs e)
             {
 
