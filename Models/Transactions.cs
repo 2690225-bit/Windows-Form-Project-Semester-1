@@ -1,7 +1,4 @@
-﻿// Models/Transaction.cs
-// Represents a completed sale — a permanent record saved after checkout.
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace POSSystem.Models
