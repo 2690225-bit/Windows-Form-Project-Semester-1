@@ -13,6 +13,7 @@ namespace POSSystem.Services
             get
             {
                 //Without the following code, the database will not work resulting in the user not being able to log in or do any other actions related to the database
+                //It also ensures that there is only one central database
                 if (_instance == null)
                     _instance = new DataStore();
                 return _instance;
@@ -50,10 +51,10 @@ namespace POSSystem.Services
         private int _transactionCounter = 1;
         private Users currentUser;
 
-        //Creates a unique Id for each transaction
+        //Creates a unique ID for each transaction
         public string GenerateTransactionId()
         {
-            // Format: TXN-YYYYMMDD-counter (zero-padded to 3 digits)
+            // Format for each unique ID
             string id = $"TXN-{System.DateTime.Now:yyyyMMdd}-{_transactionCounter:D3}";
             _transactionCounter++;   // Increment so the next ID is different
             return id;
