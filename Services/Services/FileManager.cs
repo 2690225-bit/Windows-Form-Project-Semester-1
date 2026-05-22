@@ -2,7 +2,6 @@
 using System.IO;                        
 using System.Collections.Generic;
 using POSSystem.Models;
-//using Newtonsoft.Json;
 using System.Text.Json;
 
 namespace POSSystem.Services
@@ -18,7 +17,8 @@ namespace POSSystem.Services
             );
 
         //Every type of data will be separatly stored in its own file
-        //readonly means you can only assign the field during the declaration or in a constructor in the same class.
+        //readonly means this field can only be set when declared or in the class constructor.
+        //A constructor is like a “setup function” for a class that automatically runs when you make a new object.
         private static readonly string UsersFile = Path.Combine(AppFolder, "users.json");
         private static readonly string CustomersFile = Path.Combine(AppFolder, "customers.json");
         private static readonly string ProductsFile = Path.Combine(AppFolder, "products.json");
@@ -38,7 +38,7 @@ namespace POSSystem.Services
             Directory.CreateDirectory(AppFolder);
             var store = DataStore.Instance;
 
-            //Example for the first one is that it takes all users in memory → convert them into JSON → save them into a file on disk
+            //Example for the first one is that it takes all users in memory, then converts them into JSON, then saves them into a file on disk
             File.WriteAllText(UsersFile, System.Text.Json.JsonSerializer.Serialize(store.Users, Options));
             File.WriteAllText(CustomersFile, System.Text.Json.JsonSerializer.Serialize(store.Customers, Options));
             File.WriteAllText(ProductsFile, System.Text.Json.JsonSerializer.Serialize(store.Products, Options));
@@ -60,7 +60,6 @@ namespace POSSystem.Services
             store.Settings = LoadObject<AppSettings>(SettingsFile) ?? new AppSettings(); 
 
             // If no users exist (first time running), create a default Admin account
-
             if (store.Users.Count == 0)
             {
                 store.Users.Add(new Users
@@ -83,8 +82,10 @@ namespace POSSystem.Services
                 {
                     new Product { SKU="SKU-001", Name="Coca Cola 375ml",  Category="Beverages", Price=2.50m, Stock=50, LastUpdated=DateTime.Now },
                     new Product { SKU="SKU-002", Name="Chips BBQ 150g",   Category="Snacks",    Price=3.20m, Stock=30, LastUpdated=DateTime.Now },
-                    new Product { SKU="SKU-003", Name="Water 600ml",      Category="Beverages", Price=1.50m, Stock=8,  LastUpdated=DateTime.Now },  // Low stock!
+                    // Low stock Product for example
+                    new Product { SKU="SKU-003", Name="Water 600ml",      Category="Beverages", Price=1.50m, Stock=8,  LastUpdated=DateTime.Now },
                     new Product { SKU="SKU-004", Name="Chocolate Bar",    Category="Confectionery", Price=2.00m, Stock=5, LastUpdated=DateTime.Now },
+                    new Product { SKU="SKU-005", Name="Chewing Gum",    Category="Confectionery", Price=4.00m, Stock=20, LastUpdated=DateTime.Now },
                 });
                 SaveAll();
             }
