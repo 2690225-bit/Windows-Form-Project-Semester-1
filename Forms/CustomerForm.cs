@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using POSSystem.Models;
@@ -120,12 +121,13 @@ namespace POSSystem.Forms
 
     public class AddCustomerForm : Form
     {
-        private TextBox txtName, txtEmail, txtPhone;
+        private TextBox txtName, txtEmail, intPhone;
         private Button btnSave, btnCancel;
 
         public AddCustomerForm()
         {
             this.Text = "Add Customer";
+            this.Size = new Size(400, 450);
 
             BuildForm();
         }
@@ -134,7 +136,7 @@ namespace POSSystem.Forms
         {
             AddLabel("Name", 30); txtName = AddTextBox(55);
             AddLabel("Email", 95); txtEmail = AddTextBox(120);
-            AddLabel("Phone", 160); txtPhone = AddTextBox(185);
+            AddLabel("Phone", 160); intPhone = AddTextBox(185);
 
             btnSave = new Button { Text = "Save", Top = 230, Left = 50 };
             btnSave.Click += BtnSave_Click;
@@ -143,7 +145,7 @@ namespace POSSystem.Forms
             // s = the button clicked, e = extra click info (neither needed here, we just want to close)
             btnCancel.Click += (s, e) => this.Close();
 
-            this.Controls.AddRange(new Control[] { txtName, txtEmail, txtPhone, btnSave, btnCancel });
+            this.Controls.AddRange(new Control[] { txtName, txtEmail, intPhone, btnSave, btnCancel });
         }
 
         private void BtnSave_Click(object sender, EventArgs e)
@@ -164,7 +166,7 @@ namespace POSSystem.Forms
                 Id = store.GenerateCustomerId(),
                 Name = txtName.Text.Trim(),
                 Email = txtEmail.Text.Trim(),
-                Phone = txtPhone.Text.Trim()
+                Phone = intPhone.Text.Trim()
             };
 
             store.Customers.Add(customer);
@@ -200,17 +202,18 @@ namespace POSSystem.Forms
     {
         // Store a reference to the customer being edited
         private readonly Customer _customer;
-        private TextBox txtName, txtEmail, txtPhone;
+        private TextBox txtName, txtEmail, intPhone;
 
         // Constructor takes the Customer to edit — we pre-fill the fields with existing data
         public EditCustomerForm(Customer customer)
         {
             _customer = customer;
             this.Text = "Edit Customer";
+            this.Size = new Size(400, 450);
 
             AddLabel("Name", 30); txtName = AddTextBox(55, _customer.Name);
             AddLabel("Email", 95); txtEmail = AddTextBox(120, _customer.Email);
-            AddLabel("Phone", 160); txtPhone = AddTextBox(185, _customer.Phone);
+            AddLabel("Phone", 160); intPhone = AddTextBox(185, _customer.Phone);
 
             var btnSave = new Button { Text = "Save Customer", Top = 225, Left = 50, Width = 300 };
             btnSave.Click += (s, e) =>
@@ -224,7 +227,7 @@ namespace POSSystem.Forms
                 // Because DataStore holds a reference to this same object, if a change is made here, it is made everywhere
                 _customer.Name = txtName.Text.Trim();
                 _customer.Email = txtEmail.Text.Trim();
-                _customer.Phone = txtPhone.Text.Trim();
+                _customer.Phone = intPhone.Text.Trim();
 
                 FileManager.SaveAll();
                 MessageBox.Show("Customer updated successfully!");

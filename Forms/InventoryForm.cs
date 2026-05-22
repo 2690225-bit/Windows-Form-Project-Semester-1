@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using POSSystem.Models;
@@ -145,6 +146,7 @@ namespace POSSystem.Forms
         public AddProductForm()
         {
             this.Text = "Add Product";
+            this.Size = new Size(400, 450);
             BuildForm();
         }
 
@@ -163,6 +165,7 @@ namespace POSSystem.Forms
             btnCancel.Click += (s, e) => this.Close();
 
             this.Controls.AddRange(new Control[] { txtName, txtCategory, txtPrice, txtStock, btnSave, btnCancel });
+            
         }
 
         private void BtnSave_Click(object sender, EventArgs e)
@@ -171,6 +174,15 @@ namespace POSSystem.Forms
             if (string.IsNullOrWhiteSpace(txtName.Text))
             {
                 MessageBox.Show("Product name is required.", "Validation Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Check that product name contains only letters, numbers, spaces, hyphens, or periods.
+            // If it contains other characters, show a warning and stop processing.
+            if (!System.Text.RegularExpressions.Regex.IsMatch(txtName.Text, @"^[a-zA-Z0-9\s\-\.]+$"))
+            {
+                MessageBox.Show("Product name contains invalid characters.", "Validation Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -241,6 +253,7 @@ namespace POSSystem.Forms
         {
             _product = product;
             this.Text = "Edit Product";
+            this.Size = new Size(400, 450);
 
             AddLabel("Product Name", 30); txtName = AddTextBox(55, _product.Name);
             AddLabel("Category", 95); txtCategory = AddTextBox(120, _product.Category);
@@ -250,9 +263,32 @@ namespace POSSystem.Forms
             var btnSave = new Button { Text = "Save Product", Top = 295, Left = 50, Width = 300 };
             btnSave.Click += (s, e) =>
             {
-                if (string.IsNullOrWhiteSpace(txtName.Text)) { MessageBox.Show("Name is required."); return; }
-                if (!decimal.TryParse(txtPrice.Text, out decimal price)) { MessageBox.Show("Enter a valid price."); return; }
-                if (!int.TryParse(txtStock.Text, out int stock)) { MessageBox.Show("Enter a valid stock quantity."); return; }
+                if (string.IsNullOrWhiteSpace(txtName.Text))
+                {   
+                    MessageBox.Show("Name is required."); 
+                    return; 
+                }
+
+                if (!decimal.TryParse(txtPrice.Text, out decimal price)) 
+                { 
+                    MessageBox.Show("Enter a valid price.");
+                    return; 
+                }
+
+                if (!int.TryParse(txtStock.Text, out int stock)) 
+                { 
+                    MessageBox.Show("Enter a valid stock quantity."); 
+                    return; 
+                }
+
+                // Check that product name contains only letters, numbers, spaces, hyphens, or periods.
+                // If it contains other characters, show a warning and stop processing.
+                if (!System.Text.RegularExpressions.Regex.IsMatch(txtName.Text, @"^[a-zA-Z0-9\s\-\.]+$"))
+                {
+                    MessageBox.Show("Product name contains invalid characters.", "Validation Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
                 // Because DataStore holds a reference to this same object, if a change is made here, it is made everywhere
                 _product.Name = txtName.Text.Trim();
