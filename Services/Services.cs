@@ -24,11 +24,8 @@ namespace POSSystem.Services
 
             if (user == null)
             {
-                //Store the logged in user so that all forms can access it
                 store.CurrentUser = user;
             }
-
-            //If login failed, return null
             return null;
         }
 
