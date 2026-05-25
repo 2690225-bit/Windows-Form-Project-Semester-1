@@ -16,10 +16,10 @@ namespace POSSystem.Forms
         private void Dashboard_Load(object sender, EventArgs e)
         {
             var store = DataStore.Instance;
-
-            // Set welcome message using the logged-in user's first name
+            label2.Text = store.Settings.CompanyName;  // pulls from settings
             label3.Text = $"Welcome back, {store.CurrentUser?.FirstName}";
-
+            label4.Text = store.IsOnline ? "● Online" : "○ Offline";
+            label4.ForeColor = store.IsOnline ? Color.Green : Color.Red;
             RefreshDashboard();
         }
 

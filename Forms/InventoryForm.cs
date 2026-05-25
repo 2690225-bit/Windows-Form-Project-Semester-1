@@ -140,7 +140,8 @@ namespace POSSystem.Forms
 
     public class AddProductForm : Form
     {
-        private TextBox txtName, txtCategory, txtPrice, txtStock;
+        private TextBox txtName, txtPrice, txtStock;
+        private ComboBox cmbCategory;
         private Button btnSave, btnCancel;
 
         public AddProductForm()
@@ -153,7 +154,8 @@ namespace POSSystem.Forms
         private void BuildForm()
         {
             AddLabel("Product Name", 30); txtName = AddTextBox(55);
-            AddLabel("Category", 95); txtCategory = AddTextBox(120);
+            AddLabel("Category", 95);
+            cmbCategory = AddCategoryDropdown(120);
             AddLabel("Price ($)", 160); txtPrice = AddTextBox(185);
             AddLabel("Stock Quantity", 225); txtStock = AddTextBox(250);
 
@@ -164,8 +166,27 @@ namespace POSSystem.Forms
             // s = the button clicked, e = extra click info (neither needed here, we just want to close)
             btnCancel.Click += (s, e) => this.Close();
 
-            this.Controls.AddRange(new Control[] { txtName, txtCategory, txtPrice, txtStock, btnSave, btnCancel });
-            
+            this.Controls.AddRange(new Control[] { txtName, cmbCategory, txtPrice, txtStock, btnSave, btnCancel });
+        }
+
+        private ComboBox AddCategoryDropdown(int y)
+        {
+            var cmb = new ComboBox
+            {
+                Top = y,
+                Left = 50,
+                Width = 300,
+                DropDownStyle = ComboBoxStyle.DropDownList
+            };
+            cmb.Items.AddRange(new[]
+            {
+        "Beverages", "Snacks", "Confectionery", "Dairy",
+        "Bakery", "Frozen", "Household", "Personal Care",
+        "Produce", "Meat"
+    });
+            cmb.SelectedIndex = 0;
+            this.Controls.Add(cmb);
+            return cmb;
         }
 
         private void BtnSave_Click(object sender, EventArgs e)
@@ -210,7 +231,7 @@ namespace POSSystem.Forms
             {
                 SKU = store.GenerateSKU(),
                 Name = txtName.Text.Trim(),
-                Category = txtCategory.Text.Trim(),
+                Category = cmbCategory.SelectedItem?.ToString() ?? "",
                 Price = price,
                 Stock = stock,
                 LastUpdated = DateTime.Now
@@ -246,7 +267,8 @@ namespace POSSystem.Forms
     {
         // Store a reference to the product being edited
         private readonly Product _product;
-        private TextBox txtName, txtCategory, txtPrice, txtStock;
+        private TextBox txtName, txtPrice, txtStock;
+        private ComboBox cmbCategory;
 
         // Constructor takes the Product to edit — we pre-fill the fields with existing data
         public EditProductForm(Product product)
@@ -256,7 +278,8 @@ namespace POSSystem.Forms
             this.Size = new Size(400, 450);
 
             AddLabel("Product Name", 30); txtName = AddTextBox(55, _product.Name);
-            AddLabel("Category", 95); txtCategory = AddTextBox(120, _product.Category);
+            AddLabel("Category", 95);
+            cmbCategory = AddCategoryDropdown(120); 
             AddLabel("Price ($)", 160); txtPrice = AddTextBox(185, _product.Price.ToString());
             AddLabel("Stock Quantity", 225); txtStock = AddTextBox(250, _product.Stock.ToString());
 
@@ -292,7 +315,7 @@ namespace POSSystem.Forms
 
                 // Because DataStore holds a reference to this same object, if a change is made here, it is made everywhere
                 _product.Name = txtName.Text.Trim();
-                _product.Category = txtCategory.Text.Trim();
+                cmbCategory.SelectedItem = _product.Category;
                 _product.Price = price;
                 _product.Stock = stock;
                 _product.LastUpdated = DateTime.Now;
@@ -303,6 +326,26 @@ namespace POSSystem.Forms
             };
 
             this.Controls.Add(btnSave);
+        }
+
+        private ComboBox AddCategoryDropdown(int y)
+        {
+            var cmb = new ComboBox
+            {
+                Top = y,
+                Left = 50,
+                Width = 300,
+                DropDownStyle = ComboBoxStyle.DropDownList
+            };
+            cmb.Items.AddRange(new[]
+            {
+        "Beverages", "Snacks", "Confectionery", "Dairy",
+        "Bakery", "Frozen", "Household", "Personal Care",
+        "Produce", "Meat"
+    });
+            cmb.SelectedIndex = 0;
+            this.Controls.Add(cmb);
+            return cmb;
         }
 
         private Label AddLabel(string text, int y)

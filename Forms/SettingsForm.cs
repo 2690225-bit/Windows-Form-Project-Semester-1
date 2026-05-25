@@ -2,8 +2,7 @@
 using System.Windows.Forms;
 using POSSystem.Models;
 using POSSystem.Services;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+
 
 namespace POSSystem.Forms
 {
@@ -66,6 +65,7 @@ namespace POSSystem.Forms
             s.LowStockAlertsEnabled = checkBox1.Checked;
 
             FileManager.SaveAll();
+
             MessageBox.Show("Settings saved!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
